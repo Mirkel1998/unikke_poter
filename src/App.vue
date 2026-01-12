@@ -1,85 +1,82 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <RouterLink to="/" class="navbar-brand">
+        <img src="/pawLogo.svg" alt="Logo" class="logo" />
+        <h2>Unikke Poter</h2>
+      </RouterLink>
+      <div class="navbar-links">
+        <RouterLink to="/">Forside</RouterLink>
+        <RouterLink to="/about">Om Unikke Poter</RouterLink>
+      </div>
     </div>
-  </header>
+  </nav>
 
   <RouterView />
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.navbar {
+  background-color: var(--main-green);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  height: 40px;
+  width: auto;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.navbar-brand h2 {
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.navbar-links {
+  display: flex;
+  gap: 2rem;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  transition: color 0.3s;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.navbar-links a:hover {
+  color: #42b983;
 }
 
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.navbar-links a.router-link-exact-active {
+  color: #42b983;
+  font-weight: bold;
 }
 </style>
