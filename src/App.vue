@@ -1,5 +1,14 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { ref } from 'vue'
+
+const showDropdownAbout = ref(false)
+const showDropdownTilmeld = ref(false)
+
+const closeDropdowns = () => {
+  showDropdownAbout.value = false
+  showDropdownTilmeld.value = false
+}
 </script>
 
 <template>
@@ -11,7 +20,33 @@ import { RouterLink, RouterView } from 'vue-router'
       </RouterLink>
       <div class="navbar-links">
         <RouterLink to="/">Forside</RouterLink>
-        <RouterLink to="/about">Om Unikke Poter</RouterLink>
+        <div class="dropdown" @mouseenter="showDropdownAbout = true" @mouseleave="closeDropdowns">
+          <RouterLink to="/about" class="dropdown-toggle">
+            Om Unikke Poter
+          </RouterLink>
+          <div v-if="showDropdownAbout" class="dropdown-menu">
+            <RouterLink to="/hvem-henvender-vi-os-til" @click="closeDropdowns">
+              Hvem henvender Unikke Poter sig til
+            </RouterLink>
+            <RouterLink to="/traeningsmetoder" @click="closeDropdowns">
+              Træningsmetoder
+            </RouterLink>
+          </div>
+        </div>
+        <div class="dropdown" @mouseenter="showDropdownTilmeld = true" @mouseleave="closeDropdowns">
+          <RouterLink to="/tilmeld-hold" class="dropdown-toggle">
+            Tilmeld Hold
+          </RouterLink>
+          <div v-if="showDropdownTilmeld" class="dropdown-menu">
+            <RouterLink to="/priser" @click="closeDropdowns">
+              Priser
+            </RouterLink>
+            <RouterLink to="/beskrivelse-af-hold" @click="closeDropdowns">
+              Beskrivelse af Hold
+            </RouterLink>
+          </div>
+        </div>
+        <RouterLink to="/kontakt">Kontakt</RouterLink>
       </div>
     </div>
   </nav>
@@ -25,11 +60,14 @@ import { RouterLink, RouterView } from 'vue-router'
         <h3>Unikke Poter</h3>
       </div>
       <div class="footer-section">
+        <h4>Links</h4>
         <RouterLink to="/">Forside</RouterLink>
         <RouterLink to="/about">Om Unikke Poter</RouterLink>
+        <RouterLink to="/tilmeld-hold">Tilmeld Hold</RouterLink>
+        <RouterLink to="/kontakt">Kontakt</RouterLink>
       </div>
       <div class="footer-section">
-        <h4>Kontakt</h4>
+        <h4>Kontakt Information</h4>
         <p>Email: H_tranberg@hotmail.com</p>
         <p>Telefon: +45 42 15 20 39</p>
       </div>
@@ -82,6 +120,7 @@ import { RouterLink, RouterView } from 'vue-router'
 .navbar-links {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .navbar-links a {
@@ -99,6 +138,40 @@ import { RouterLink, RouterView } from 'vue-router'
 .navbar-links a.router-link-exact-active {
   color: #385234;
   font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--main-green);
+  min-width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  z-index: 1001;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background-color: #466837;
 }
 
 .footer {
