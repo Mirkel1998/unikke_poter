@@ -25,7 +25,7 @@
             <li>Socialisering med andre hunde</li>
             <li>Træning i distraktionsmiljø</li>
           </ul>
-          <RouterLink to="/kontakt">
+          <RouterLink to="/tilmeld-formular">
             <button class="cta-button">Tilmeld nu</button>
           </RouterLink>
         </div>
@@ -44,7 +44,7 @@
             <li>Træning i dit eget tempo</li>
             <li>Mulighed for hjemmebesøg</li>
           </ul>
-          <RouterLink to="/kontakt">
+          <RouterLink to="/tilmeld-formular">
             <button class="cta-button">Tilmeld nu</button>
           </RouterLink>
         </div>

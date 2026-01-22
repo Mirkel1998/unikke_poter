@@ -30,6 +30,11 @@ const router = createRouter({
       component: () => import('../views/TilmeldHoldView.vue'),
     },
     {
+      path: '/tilmeld-formular',
+      name: 'tilmeld-formular',
+      component: () => import('../views/TilmeldFormularView.vue'),
+    },
+    {
       path: '/priser',
       name: 'priser',
       component: () => import('../views/PriserView.vue'),

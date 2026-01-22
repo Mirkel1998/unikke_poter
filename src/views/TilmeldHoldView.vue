@@ -51,7 +51,9 @@
             <div class="service-price">
               <p class="price">1.200 kr. / 8 uger</p>
             </div>
-            <button class="cta-button">Tilmeld holdtræning</button>
+            <RouterLink to="/tilmeld-formular">
+              <button class="cta-button">Tilmeld holdtræning</button>
+            </RouterLink>
           </div>
           <div class="service-image">
             <img src="/holdtraening.jpg" alt="Holdtræning" />
@@ -81,7 +83,9 @@
               <p class="price">400 kr. / time</p>
               <p class="price-note">Pakkeløsninger tilbydes</p>
             </div>
-            <button class="cta-button">Tilmeld alene træning</button>
+            <RouterLink to="/tilmeld-formular">
+              <button class="cta-button">Tilmeld alene træning</button>
+            </RouterLink>
           </div>
           <div class="service-image">
             <img src="/alenetraening.jpg" alt="Individuel træning" />
