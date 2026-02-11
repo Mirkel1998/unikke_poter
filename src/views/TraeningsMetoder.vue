@@ -77,33 +77,7 @@
       </div>
     </section>
 
-    <section class="process-section">
-      <div class="process-container">
-        <h2>Sådan Kommer Du i Gang</h2>
-        <div class="process-steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h3>Lad Hunden Lære Klikkerens Lyd</h3>
-            <p>Start med at lade hunden associere klikkerens lyd med noget positivt. Klik og giv en godbid - gentag dette flere gange.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <h3>Fang Adfærden</h3>
-            <p>Observér din hund og klik når den naturligt gør noget du ønsker. For eksempel når den sætter sig ned af sig selv.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <h3>Form Adfærden</h3>
-            <p>Belønning små trin i den rigtige retning. Hvis du vil have hunden til at lægge sig, klik først når den kigger ned, så når den bøjer benene, osv.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">4</div>
-            <h3>Tilføj Kommando</h3>
-            <p>Når hunden konsekvent udfører adfærden, kan du begynde at tilføje en verbal kommando eller et håndsignal.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    
 
     <section class="cta-section">
       <div class="cta-content">

@@ -10,7 +10,9 @@ const formData = ref({
   dogAge: '',
   dogBreed: '',
   experience: '',
-  message: ''
+  message: '',
+  hasInsurance: '',
+  isVaccinated: ''
 })
 
 const submitForm = () => {
@@ -115,6 +117,26 @@ const submitForm = () => {
                 placeholder="F.eks. Golden Retriever"
                 required 
               />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="hasInsurance">Har du forsikring på din hund? *</label>
+              <select id="hasInsurance" v-model="formData.hasInsurance" required>
+                <option value="">Vælg...</option>
+                <option value="ja">Ja</option>
+                <option value="nej">Nej</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="isVaccinated">Er din hund vaccineret? *</label>
+              <select id="isVaccinated" v-model="formData.isVaccinated" required>
+                <option value="">Vælg...</option>
+                <option value="ja">Ja</option>
+                <option value="nej">Nej</option>
+              </select>
             </div>
           </div>
 
@@ -224,7 +246,7 @@ const submitForm = () => {
 
 .form-group label {
   display: block;
-  font-family: var(--font-body);
+  font-family: var(--font-body); 
   font-size: 1rem;
   font-weight: 600;
   color: #333;

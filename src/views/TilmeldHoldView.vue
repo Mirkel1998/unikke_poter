@@ -119,7 +119,7 @@
         <div class="faq-item">
           <h3>Hvad skal jeg medbringe?</h3>
           <p>
-            Du skal medbringe din hund, godbidder som din hund elsker, en klikker (kan købes hos os), 
+            Du skal medbringe din hund, godbidder som din hund elsker, en klikker (kan købes hos os), fastline snor, seletøj
             og en god attitude. Vi sørger for resten!
           </p>
         </div>

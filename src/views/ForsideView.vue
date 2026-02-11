@@ -1,5 +1,41 @@
 <script setup>
+import { ref } from 'vue'
 
+const anmeldelser = [
+  {
+    name: 'Maria Hansen',
+    rating: 5,
+    text: 'Fantastisk træning! Min hund har lært så meget på kort tid.'
+  },
+  {
+    name: 'Peter Nielsen',
+    rating: 5,
+    text: 'Professionel og venlig tilgang. Kan varmt anbefales! Isreligt gode resultater med min hunds adfærd. Og mange andre dejlige ting'
+  },
+  {
+    name: 'Anne Larsen',
+    rating: 5,
+    text: 'Bedste hundetræning vi har prøvet. Meget tålmodig instruktør.'
+  }
+]
+
+const expandedReviews = ref([])
+
+const toggleReview = (index) => {
+  if (expandedReviews.value.includes(index)) {
+    expandedReviews.value = expandedReviews.value.filter(i => i !== index)
+  } else {
+    expandedReviews.value.push(index)
+  }
+}
+
+const isExpanded = (index) => {
+  return expandedReviews.value.includes(index)
+}
+
+const shouldShowButton = (text) => {
+  return text.length > 120
+}
 </script>
 
 <template>
@@ -48,6 +84,28 @@
           Din tredje brødtekst kommer her. Afslut med det vigtigste budskab.
         </p>
         <button class="cta-button">Læs mere</button>
+      </div>
+    </section>
+
+    <section class="anmeldelser-section">
+      <h2>Hvad Siger Vores Kunder?</h2>
+      <div class="anmeldelser-container">
+        <div v-for="(anmeldelse, index) in anmeldelser" :key="index" class="anmeldelse-card">
+          <div class="stars">
+            <span v-for="star in anmeldelse.rating" :key="star">⭐</span>
+          </div>
+          <p class="anmeldelse-text" :class="{ 'truncated': !isExpanded(index) && shouldShowButton(anmeldelse.text) }">
+            "{{ anmeldelse.text }}"
+          </p>
+          <button 
+            v-if="shouldShowButton(anmeldelse.text)" 
+            @click="toggleReview(index)" 
+            class="read-more-button"
+          >
+            {{ isExpanded(index) ? 'Vis mindre' : 'Læs anmeldelse' }}
+          </button>
+          <p class="anmeldelse-name">- {{ anmeldelse.name }}</p>
+        </div>
       </div>
     </section>
 
@@ -199,6 +257,84 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+.anmeldelser-section {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.anmeldelser-section h2 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  margin: 0 0 3rem 0;
+  color: var(--main-green);
+}
+
+.anmeldelser-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.anmeldelse-card {
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.anmeldelse-card:hover {
+  transform: translateY(-5px);
+}
+
+.stars {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.anmeldelse-text {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0 0 1rem 0;
+  font-style: italic;
+}
+
+.anmeldelse-text.truncated {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.read-more-button {
+  background-color: transparent;
+  color: var(--main-green);
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+
+.read-more-button:hover {
+  color: #466837;
+  text-decoration: underline;
+}
+
+.anmeldelse-name {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--main-green);
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .content-section,
   .content-section.reverse {
@@ -207,6 +343,10 @@
   
   .banner-content h2 {
     font-size: 2rem;
+  }
+
+  .anmeldelser-container {
+    grid-template-columns: 1fr;
   }
 }
 </style>
