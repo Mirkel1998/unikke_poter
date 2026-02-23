@@ -1,5 +1,9 @@
 <script setup>
 import { ref } from 'vue'
+import emailjs from '@emailjs/browser'
+
+// Remove or comment out the init line
+// emailjs.init('dvvYi7mwlWMAibNgV')
 
 const formData = ref({
   trainingType: '',
@@ -15,10 +19,55 @@ const formData = ref({
   isVaccinated: ''
 })
 
-const submitForm = () => {
-  console.log('Form submitted:', formData.value)
-  // Here you would typically send the data to a backend
-  alert('Tak for din tilmelding! Vi kontakter dig snarest.')
+const isSubmitting = ref(false)
+
+const submitForm = async () => {
+  isSubmitting.value = true
+  
+  try {
+    //First is the service ID, then template ID
+    await emailjs.send(
+      'service_677j3br',      
+      'template_quqejvd',     
+      {
+        trainingType: formData.value.trainingType,
+        ownerName: formData.value.ownerName,
+        email: formData.value.email,
+        phone: formData.value.phone,
+        dogName: formData.value.dogName,
+        dogAge: formData.value.dogAge,
+        dogBreed: formData.value.dogBreed,
+        experience: formData.value.experience,
+        message: formData.value.message,
+        hasInsurance: formData.value.hasInsurance,
+        isVaccinated: formData.value.isVaccinated
+      },
+      'dvvYi7mwlWMAibNgV'  // ← Put your ACTUAL public key from the Account page here
+    )
+    
+    console.log('SUCCESS!')
+    alert('Tak for din tilmelding! Vi kontakter dig snarest.')
+    
+    // Reset form
+    formData.value = {
+      trainingType: '',
+      ownerName: '',
+      email: '',
+      phone: '',
+      dogName: '',
+      dogAge: '',
+      dogBreed: '',
+      experience: '',
+      message: '',
+      hasInsurance: '',
+      isVaccinated: ''
+    }
+  } catch (error) {
+    console.error('FULL ERROR:', error)
+    alert('Der skete en fejl. Prøv venligst igen.')
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>
 
@@ -160,7 +209,13 @@ const submitForm = () => {
             ></textarea>
           </div>
 
-          <button type="submit" class="submit-button">Send tilmelding</button>
+          <button 
+            type="submit" 
+            class="submit-button"
+            :disabled="isSubmitting"
+          >
+            {{ isSubmitting ? 'Sender...' : 'Send tilmelding' }}
+          </button>
         </form>
 
         <div class="info-box">

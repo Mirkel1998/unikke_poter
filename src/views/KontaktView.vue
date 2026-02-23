@@ -1,5 +1,51 @@
 <script setup>
+import { ref } from 'vue'
+import emailjs from '@emailjs/browser'
 
+// Initialize EmailJS
+emailjs.init('dvvYi7mwlWMAibNgV')
+
+const formData = ref({
+  name: '',
+  email: '',
+  phone: '',
+  message: ''
+})
+
+const isSubmitting = ref(false)
+
+const submitForm = async () => {
+  isSubmitting.value = true
+  
+  try {
+    const result = await emailjs.send(
+      'service_677j3br',      
+      'template_lm99ttp',     // ← Changed to your actual template ID
+      {
+        name: formData.value.name,
+        email: formData.value.email,
+        phone: formData.value.phone,
+        message: formData.value.message
+      }
+    )
+    
+    console.log('SUCCESS!', result)
+    alert('Tak for din besked! Vi vender tilbage til dig hurtigst muligt.')
+    
+    // Reset form
+    formData.value = {
+      name: '',
+      email: '',
+      phone: '',
+      message: ''
+    }
+  } catch (error) {
+    console.error('FULL ERROR:', error)
+    alert('Der skete en fejl. Prøv venligst igen.')
+  } finally {
+    isSubmitting.value = false
+  }
+}
 </script>
 
 <template>
@@ -38,24 +84,53 @@
 
       <div class="kontakt-form">
         <h2>Send os en besked</h2>
-        <form>
+        <form @submit.prevent="submitForm">
           <div class="form-group">
-            <label for="name">Navn</label>
-            <input type="text" id="name" name="name" required />
+            <label for="name">Navn *</label>
+            <input 
+              type="text" 
+              id="name" 
+              v-model="formData.name" 
+              required 
+              placeholder="Dit fulde navn"
+            />
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
+            <label for="email">Email *</label>
+            <input 
+              type="email" 
+              id="email" 
+              v-model="formData.email" 
+              required 
+              placeholder="din@email.dk"
+            />
           </div>
           <div class="form-group">
             <label for="phone">Telefon</label>
-            <input type="tel" id="phone" name="phone" />
+            <input 
+              type="tel" 
+              id="phone" 
+              v-model="formData.phone" 
+              placeholder="+45 12 34 56 78"
+            />
           </div>
           <div class="form-group">
-            <label for="message">Besked</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+            <label for="message">Besked *</label>
+            <textarea 
+              id="message" 
+              v-model="formData.message" 
+              rows="6" 
+              required
+              placeholder="Skriv din besked her..."
+            ></textarea>
           </div>
-          <button type="submit" class="cta-button">Send besked</button>
+          <button 
+            type="submit" 
+            class="cta-button"
+            :disabled="isSubmitting"
+          >
+            {{ isSubmitting ? 'Sender...' : 'Send besked' }}
+          </button>
         </form>
       </div>
     </section>
@@ -185,6 +260,11 @@
 
 .cta-button:hover {
   background-color: #466837;
+}
+
+.cta-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 @media (max-width: 968px) {
