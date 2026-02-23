@@ -52,10 +52,9 @@ const shouldShowButton = (text) => {
         <img src="/your-image.jpg" alt="Description" />
       </div>
       <div class="text-container">
-        <h2>Overskrift</h2>
+        <h2>Om unikke Poter</h2>
         <p>
-          Din brødtekst kommer her. Skriv om dine unikke poter og hvad der gør dem specielle.
-          Du kan tilføje flere afsnit efter behov.
+        Hos Unikke Poter arbejder vi dedikeret for at skabe harmoniske relationer mellem hunde og deres ejere. Vi tror på, at hver hund er unik og fortjener individuel opmærksomhed og træning, der er tilpasset deres specifikke behov og personlighed.
         </p>
         <button class="cta-button">Læs mere</button>
       </div>
@@ -66,9 +65,9 @@ const shouldShowButton = (text) => {
         <img src="/your-image.jpg" alt="Description" />
       </div>
       <div class="text-container">
-        <h2>Overskrift 2</h2>
+        <h2>Træningsmetoder</h2>
         <p>
-          Din anden brødtekst kommer her. Fortsæt med at fortælle din historie.
+          Hos Unikke Poter bruger vi klikkertræning som vores primære metode. Klikkertræning er en positiv, belønningsbaseret tilgang, der bygger på videnskabelig forskning om hundes indlæring. Med en klikker kan vi præcist markere den rigtige adfærd i det øjeblik, den sker, hvilket gør træningen tydelig og effektiv for din hund.
         </p>
         <button class="cta-button">Læs mere</button>
       </div>
@@ -79,9 +78,9 @@ const shouldShowButton = (text) => {
         <img src="/your-image.jpg" alt="Description" />
       </div>
       <div class="text-container">
-        <h2>Overskrift 3</h2>
+        <h2>Tilmeld hold</h2>
         <p>
-          Din tredje brødtekst kommer her. Afslut med det vigtigste budskab.
+          Tilmeld dig vores hold og giv din hund den bedste træning. Vi tilbyder både holdtræning og alenetræning, så du kan vælge den løsning, der passer bedst til dig og din hund. Vores erfarne trænere står klar til at hjælpe dig og din hund med at nå jeres mål.
         </p>
         <button class="cta-button">Læs mere</button>
       </div>
