@@ -68,7 +68,7 @@ const submitForm = async () => {
           <h2>Kontaktinformation</h2>
           <div class="info-item">
             <h3>Email</h3>
-            <p>H_tranberg@hotmail.com</p>
+            <p>unikkepoter@gmail.com</p>
           </div>
           <div class="info-item">
             <h3>Telefon</h3>

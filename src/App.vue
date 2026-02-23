@@ -68,7 +68,7 @@ const closeDropdowns = () => {
       </div>
       <div class="footer-section">
         <h4>Kontakt Information</h4>
-        <p>Email: H_tranberg@hotmail.com</p>
+        <p>Email: unikkepoter@gmail.com</p>
         <p>Telefon: +45 42 15 20 39</p>
       </div>
     </div>
