@@ -42,6 +42,11 @@ const shouldShowButton = (text) => {
   <main>
     <section class="hero">
       <div class="hero-overlay"></div>
+      <div class="hero-waves">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+      </div>
       <div class="hero-content">
         <h1>Velkommen til Unikke Poter</h1>
       </div>
@@ -168,6 +173,28 @@ const shouldShowButton = (text) => {
   font-family: var(--font-body);
   font-size: 1.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-waves {
+  display: none;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(33.33%);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .content-section {
@@ -343,13 +370,89 @@ const shouldShowButton = (text) => {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    height: 50vh;
+    background-image: none;
+    background-color: var(--main-green);
+    overflow: hidden;
+  }
+
+  .hero-overlay {
+    display: none;
+  }
+
+  .hero-waves {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .wave {
+    position: absolute;
+    width: 300%;
+    height: 100%;
+    background: #466837;
+    opacity: 0.3;
+    border-radius: 45%;
+    left: -100%;
+  }
+
+  .wave1 {
+    top: 60%;
+    animation: wave 15s linear infinite;
+  }
+
+  .wave2 {
+    top: 65%;
+    opacity: 0.2;
+    animation: wave 20s linear infinite;
+    animation-delay: -5s;
+  }
+
+  .wave3 {
+    top: 70%;
+    opacity: 0.15;
+    animation: wave 25s linear infinite;
+    animation-delay: -10s;
+  }
+
+  .hero-content {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 100%;
+    box-sizing: border-box;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+    text-shadow: none;
+    padding: 0 1rem;
+    margin: 0;
+    transition: none !important;
+  }
+
   .content-section,
   .content-section.reverse {
     flex-direction: column;
   }
   
+  .banner-content {
+    top: 2rem;
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+
   .banner-content h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .anmeldelser-container {

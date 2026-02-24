@@ -1,52 +1,107 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const showDropdownAbout = ref(false)
 const showDropdownTilmeld = ref(false)
+const mobileMenuOpen = ref(false)
+const isMobile = ref(window.innerWidth <= 768)
+
+window.addEventListener('resize', () => {
+  isMobile.value = window.innerWidth <= 768
+  if (!isMobile.value) {
+    mobileMenuOpen.value = false
+  }
+})
 
 const closeDropdowns = () => {
   showDropdownAbout.value = false
   showDropdownTilmeld.value = false
+}
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+}
+
+const closeMobileMenu = () => {
+  mobileMenuOpen.value = false
+  closeDropdowns()
+}
+
+const toggleDropdown = (dropdown, event) => {
+  if (isMobile.value) {
+    event.preventDefault()
+    if (dropdown === 'about') {
+      showDropdownAbout.value = !showDropdownAbout.value
+      showDropdownTilmeld.value = false
+    } else if (dropdown === 'tilmeld') {
+      showDropdownTilmeld.value = !showDropdownTilmeld.value
+      showDropdownAbout.value = false
+    }
+  }
+}
+
+const handleDropdownMouseEnter = (dropdown) => {
+  if (!isMobile.value) {
+    if (dropdown === 'about') {
+      showDropdownAbout.value = true
+    } else if (dropdown === 'tilmeld') {
+      showDropdownTilmeld.value = true
+    }
+  }
 }
 </script>
 
 <template>
   <nav class="navbar">
     <div class="navbar-container">
-      <RouterLink to="/" class="navbar-brand">
+      <RouterLink to="/" class="navbar-brand" @click="closeMobileMenu">
         <img src="/pawLogo.svg" alt="Logo" class="logo" />
         <h2>Unikke Poter</h2>
       </RouterLink>
-      <div class="navbar-links">
-        <RouterLink to="/">Forside</RouterLink>
-        <div class="dropdown" @mouseenter="showDropdownAbout = true" @mouseleave="closeDropdowns">
-          <RouterLink to="/about" class="dropdown-toggle">
+      
+      <!-- Hamburger Menu Button -->
+      <button class="hamburger" @click="toggleMobileMenu" :class="{ active: mobileMenuOpen }" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="navbar-links" :class="{ open: mobileMenuOpen }">
+        <RouterLink to="/" @click="closeMobileMenu">Forside</RouterLink>
+        <div class="dropdown" @mouseenter="handleDropdownMouseEnter('about')" @mouseleave="closeDropdowns">
+          <RouterLink to="/about" class="dropdown-toggle" @click="toggleDropdown('about', $event)">
             Om Unikke Poter
           </RouterLink>
           <div v-if="showDropdownAbout" class="dropdown-menu">
-            <RouterLink to="/hvem-henvender-vi-os-til" @click="closeDropdowns">
+            <RouterLink to="/about" @click="closeMobileMenu" class="mobile-parent-link">
+              Om Unikke Poter
+            </RouterLink>
+            <RouterLink to="/hvem-henvender-vi-os-til" @click="closeMobileMenu">
               Hvem henvender Unikke Poter sig til
             </RouterLink>
-            <RouterLink to="/traeningsmetoder" @click="closeDropdowns">
+            <RouterLink to="/traeningsmetoder" @click="closeMobileMenu">
               Træningsmetoder
             </RouterLink>
           </div>
         </div>
-        <div class="dropdown" @mouseenter="showDropdownTilmeld = true" @mouseleave="closeDropdowns">
-          <RouterLink to="/tilmeld-hold" class="dropdown-toggle">
+        <div class="dropdown" @mouseenter="handleDropdownMouseEnter('tilmeld')" @mouseleave="closeDropdowns">
+          <RouterLink to="/tilmeld-hold" class="dropdown-toggle" @click="toggleDropdown('tilmeld', $event)">
             Tilmeld Hold
           </RouterLink>
           <div v-if="showDropdownTilmeld" class="dropdown-menu">
-            <RouterLink to="/priser" @click="closeDropdowns">
+            <RouterLink to="/tilmeld-hold" @click="closeMobileMenu" class="mobile-parent-link">
+              Tilmeld Hold
+            </RouterLink>
+            <RouterLink to="/priser" @click="closeMobileMenu">
               Priser
             </RouterLink>
-            <RouterLink to="/beskrivelse-af-hold" @click="closeDropdowns">
+            <RouterLink to="/beskrivelse-af-hold" @click="closeMobileMenu">
               Beskrivelse af Hold
             </RouterLink>
           </div>
         </div>
-        <RouterLink to="/kontakt">Kontakt</RouterLink>
+        <RouterLink to="/kontakt" @click="closeMobileMenu">Kontakt</RouterLink>
       </div>
     </div>
   </nav>
@@ -172,6 +227,117 @@ const closeDropdowns = () => {
 
 .dropdown-menu a:hover {
   background-color: #466837;
+}
+
+/* Hide mobile parent links on desktop */
+.mobile-parent-link {
+  display: none;
+}
+
+/* Hamburger Menu Button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1002;
+}
+
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background-color: var(--main-green);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5rem 2rem 2rem;
+    gap: 1.5rem;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    z-index: 1001;
+  }
+
+  .navbar-links.open {
+    right: 0;
+  }
+
+  .navbar-links > a,
+  .navbar-links > .dropdown > .dropdown-toggle {
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 0.5rem 0;
+    display: block;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropdown-toggle {
+    width: 100%;
+    padding: 0.5rem 0;
+    display: block;
+  }
+
+  .dropdown-menu {
+    position: relative;
+    left: 0;
+    top: 0;
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-top: 0.5rem;
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .dropdown-menu a {
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+    pointer-events: auto;
+  }
+
+  .mobile-parent-link {
+    display: block;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 0.25rem;
+  }
 }
 
 .footer {

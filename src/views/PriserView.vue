@@ -227,17 +227,46 @@
 }
 
 @media (max-width: 768px) {
+  .pricing-section {
+    padding: 3rem 1rem;
+  }
+
   .pricing-container {
     grid-template-columns: 1fr;
     gap: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card {
+    padding: 2rem 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
   }
 
   .hero h1 {
     font-size: 2rem;
   }
 
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .pricing-card h2 {
+    font-size: 1.5rem;
+  }
+
   .price {
     font-size: 2.5rem;
+  }
+
+  .info-section {
+    padding: 3rem 1rem;
   }
 }
 </style>
