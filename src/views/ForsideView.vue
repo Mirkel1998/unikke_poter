@@ -122,7 +122,7 @@ const shouldShowButton = (text) => {
     <section class="image-banner">
       <img src="/banner-image.jpg" alt="Banner" />
       <div class="banner-content">
-        <h2>Hvis du har nogle spørgsmål<br>er du velkommen til at tage kontakt til os</h2>
+        <h2>Hvis du har nogle spørgsmål<br>er du velkommen til at tage kontakt</h2>
         <RouterLink to="/kontakt">
           <button class="cta-button">Kontakt os</button>
         </RouterLink>
@@ -444,15 +444,42 @@ const shouldShowButton = (text) => {
   .content-section.reverse {
     flex-direction: column;
   }
+
+  .image-banner {
+    padding: 0 1rem;
+  }
+
+  .image-banner img {
+    height: 400px;
+    transform: scaleX(-1);
+    object-position: right center;
+  }
   
   .banner-content {
-    top: 2rem;
-    left: 1.5rem;
-    right: 1.5rem;
+    top: auto;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    max-width: calc(100% - 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    background-color: rgba(70, 104, 55, 0.85);
+    padding: 1rem;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
   }
 
   .banner-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.2;
+  }
+
+  .banner-content .cta-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
   }
 
   .anmeldelser-container {
