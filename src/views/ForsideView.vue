@@ -54,7 +54,7 @@ const shouldShowButton = (text) => {
 
     <section class="content-section">
       <div class="image-container">
-        <img src="/forside-1.jpg" alt="Description" />
+        <img src="/forside-1.jpg" alt="Hundetræner arbejder med hund i naturlige omgivelser" />
       </div>
       <div class="text-container">
         <h2>Om unikke Poter</h2>
@@ -69,7 +69,7 @@ const shouldShowButton = (text) => {
 
     <section class="content-section reverse">
       <div class="image-container">
-        <img src="/forside-2.jpg" alt="Description" />
+        <img src="/forside-2.jpg" alt="Klikkertræning med hund - positiv belønningsbaseret metode" />
       </div>
       <div class="text-container">
         <h2>Træningsmetoder</h2>
@@ -84,7 +84,7 @@ const shouldShowButton = (text) => {
 
     <section class="content-section">
       <div class="image-container">
-        <img src="/forside-3.jpg" alt="Description" />
+        <img src="/forside-3.jpg" alt="Hundeholdtræning med ejer og hund på træningsbane" />
       </div>
       <div class="text-container">
         <h2>Tilmeld hold</h2>
@@ -120,7 +120,7 @@ const shouldShowButton = (text) => {
     </section>
 
     <section class="image-banner">
-      <img src="/banner-image.jpg" alt="Banner" />
+      <img src="/banner-image.jpg" alt="Kontakt Unikke Poter for professionel hundetræning og adfærdsrådgivning" />
       <div class="banner-content">
         <h2>Hvis du har nogle spørgsmål<br>er du velkommen til at tage kontakt</h2>
         <RouterLink to="/kontakt">

@@ -4,7 +4,10 @@
 
 <template>
   <main class="hvem-henvender">
-    
+    <section class="hero">
+      <h1>Hvem Henvender Vi Os Til?</h1>
+      <p>Unikke Poter er for alle hundeejere, uanset erfaring</p>
+    </section>
 
     <article class="blog-content">
       <div class="blog-container">
@@ -83,42 +86,22 @@
 }
 
 .hero {
-  position: relative;
-  width: 100%;
-  height: 60vh;
-  background-image: url('/forsideHero.JPG');
-  background-size: cover;
-  background-position: bottom center;
-  background-repeat: no-repeat;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-}
-
-.hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+  background-color: var(--main-green);
   color: white;
-  z-index: 10;
-  width: 90%;
-  max-width: 800px;
+  text-align: center;
+  padding: 4rem 2rem;
 }
 
-.hero-content h1 {
+.hero h1 {
   font-family: var(--font-heading);
   font-size: 3rem;
+  margin: 0 0 1rem 0;
+}
+
+.hero p {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
   margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .blog-content {
@@ -187,11 +170,7 @@
 }
 
 @media (max-width: 768px) {
-  .hero {
-    height: 50vh;
-  }
-
-  .hero-content h1 {
+  .hero h1 {
     font-size: 2rem;
   }
 

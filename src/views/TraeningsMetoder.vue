@@ -4,6 +4,10 @@
 
 <template>
   <main class="traeningsmetoder">
+    <section class="hero">
+      <h1>Træningsmetoder</h1>
+      <p>Lær om vores positive og videnskabeligt funderede tilgang til hundetræning</p>
+    </section>
 
     <section class="intro-section">
       <div class="intro-container">
@@ -20,7 +24,7 @@
     <section class="content-section">
       <div class="content-grid">
         <div class="text-block">
-          <h2>Hvordan Virker Det?</h2>
+          <h3>Hvordan Virker Det?</h3>
           <p>
             Klikkeren fungerer som en bro mellem adfærd og belønning. Når din hund udfører den ønskede 
             adfærd, klikker du øjeblikkeligt. Dette præcise signal fortæller hunden nøjagtigt hvad den 
@@ -33,7 +37,7 @@
           </p>
         </div>
         <div class="image-block large">
-          <img src="/klikker-1.jpg" alt="Klikkertræning i aktion" />
+          <img src="/klikker-1.jpg" alt="Hundetræner demonstrerer klikkertræning med hund" />
         </div>
       </div>
     </section>
@@ -69,10 +73,10 @@
     <section class="visual-section">
       <div class="visual-container">
         <div class="visual-left">
-          <img src="/klikker-2.jpg" alt="Hundetræning" />
+          <img src="/klikker-2.jpg" alt="Hund lærer nye øvelser gennem positiv forstærkning" />
         </div>
         <div class="visual-right">
-          <img src="/klikker-3.jpg" alt="Hundetræning" />
+          <img src="/klikker-3.jpg" alt="Professionel hundetræning med fokus på tillid og respekt" />
         </div>
       </div>
     </section>
@@ -94,6 +98,25 @@
 <style scoped>
 .traeningsmetoder {
   min-height: 80vh;
+}
+
+.hero {
+  background-color: var(--main-green);
+  color: white;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+}
+
+.hero p {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  margin: 0;
 }
 
 .intro-section {
@@ -137,6 +160,13 @@
 .text-block h2 {
   font-family: var(--font-heading);
   font-size: 2rem;
+  margin: 0 0 1.5rem 0;
+  color: var(--main-green);
+}
+
+.text-block h3 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
   margin: 0 0 1.5rem 0;
   color: var(--main-green);
 }
@@ -350,6 +380,10 @@
 }
 
 @media (max-width: 968px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
   .content-grid {
     grid-template-columns: 1fr;
   }

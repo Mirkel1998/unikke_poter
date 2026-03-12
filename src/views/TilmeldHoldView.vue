@@ -56,7 +56,7 @@
             </RouterLink>
           </div>
           <div class="service-image">
-            <img src="/holdtraening.jpg" alt="Holdtræning" />
+            <img src="/holdtraening.jpg" alt="Gruppe af hunde og ejere under holdtræning med professionel instruktør" />
           </div>
         </div>
 
@@ -88,7 +88,7 @@
             </RouterLink>
           </div>
           <div class="service-image">
-            <img src="/alenetraening.jpg" alt="Individuel træning" />
+            <img src="/alenetraening.jpg" alt="Individuel hundetræning med personlig vejledning og fokus" />
           </div>
         </div>
       </div>
